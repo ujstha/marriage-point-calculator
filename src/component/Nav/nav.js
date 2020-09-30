@@ -6,13 +6,13 @@ function Nav() {
   return (
     <div className="title">
        <button onClick={()=>{
+        alert('cal')
+      }}>calc</button>
+      <button onClick={()=>{
+        localStorage.setItem('players',[])
         localStorage.setItem('showForm',true)
         window.location="/"
       }}>Reset</button>
-      <button onClick={()=>{
-        localStorage.setItem('showForm',true)
-        window.location="/"
-      }}>calculate</button>
     </div>
   );
 }

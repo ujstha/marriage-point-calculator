@@ -1,4 +1,3 @@
-import { OmitProps } from 'antd/lib/transfer/ListBody';
 import React,{useEffect, useState} from 'react';
 import ScoreCard from "./scoreCard";
 
@@ -10,7 +9,14 @@ const ScoreBoard = (props) => {
   const [totalScore,setTotalScore]=useState([])
 
   useEffect(()=>{
-    setPlayers(JSON.parse(localStorage.getItem('players')) || [])
+    let players= localStorage.getItem('players')
+    let score = localStorage.getItem('totalScore')
+    if(players){
+      setPlayers(JSON.parse(players) || [])
+    }
+    if(score){
+      setPlayers(JSON.parse() || [])
+    }
   },[])
 
   const nextPlayer=()=>{
@@ -38,12 +44,18 @@ const ScoreBoard = (props) => {
     }
     
   }
+
+  const addTototalScore = (data) =>{
+    setTotalScore([...totalScore,data])
+    localStorage.setItem('totalScore',JSON.stringify([...totalScore,data]))
+  }
+ 
  
   return (
     <>
     {!props.showPlayerSetting &&
     <>
-    <h1 onClick={()=>{console.log(score)}}>log</h1>
+    <h4 onClick={()=>{console.log(players)}}>log</h4>
       {/* <button onClick={()=>setScore([...score,score.length+1])}>add</button>
       <button onClick={()=>localStorage.setItem('a',JSON.stringify(score))}>save</button>
       <button onClick={()=>localStorage.removeItem('a')}>Reset</button> */}
