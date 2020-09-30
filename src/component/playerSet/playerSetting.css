@@ -1,0 +1,19 @@
+.submit-button{
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  bottom: 20px;
+  right: 43%;
+  background-color:red;
+  color: white;
+  border: 0px;
+  border-radius: 50%;
+}
+
+@media (max-width:767px)  { 
+
+  .players-table{
+    max-height: 200px !important;
+    overflow: scroll;
+  }
+}

@@ -1,0 +1,8 @@
+.title{
+  height: 50px;
+  background-color: brown;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
