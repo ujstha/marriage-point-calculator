@@ -1,4 +1,5 @@
-export let calc= (point)=>{
+
+export let calc= async (point)=>{
   let seenPlayer= point.filter((player)=>player.seen && !(player.fine))
   const unseenPlayer= point.filter((player)=>!player.seen || player.fine )
 
@@ -58,7 +59,10 @@ export let calc= (point)=>{
 
   let pointsWithoutWinner= updatedSeenPlayerExcWinner.concat(updatedUnseenPlayer)
   let pointWithWinner= [...pointsWithoutWinner, winner]
+
+  let players= await localStorage.getItem('players')
+  pointWithWinner.sort(function(a, b){  
+    return players.indexOf(a.name) - players.indexOf(b.name);
+  });
   return pointWithWinner
 }
-
-console.log(calc(point));

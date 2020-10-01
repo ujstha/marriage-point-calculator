@@ -1,5 +1,6 @@
 import React,{useEffect, useState} from 'react';
 import ScoreCard from "./scoreCard";
+import { calc } from "../calculation";
 
 
 const ScoreBoard = (props) => {
@@ -15,7 +16,7 @@ const ScoreBoard = (props) => {
       setPlayers(JSON.parse(players) || [])
     }
     if(score){
-      setPlayers(JSON.parse() || [])
+      setTotalScore(JSON.parse(score) || [])
     }
   },[])
 
@@ -45,9 +46,11 @@ const ScoreBoard = (props) => {
     
   }
 
-  const addTototalScore = (data) =>{
-    setTotalScore([...totalScore,data])
-    localStorage.setItem('totalScore',JSON.stringify([...totalScore,data]))
+  const addTototalScore = async (data) =>{
+    const calculated=await calc([...score,data])
+    setTotalScore([...totalScore,calculated])
+    localStorage.setItem('totalScore',JSON.stringify([...totalScore,calculated]))
+    setIndex(0)
   }
  
  
@@ -55,7 +58,8 @@ const ScoreBoard = (props) => {
     <>
     {!props.showPlayerSetting &&
     <>
-    <h4 onClick={()=>{console.log(players)}}>log</h4>
+    <h4 onClick={()=>{console.log(score)}}>log</h4>
+    <h4 onClick={()=>{console.log(totalScore)}}>total</h4>
       {/* <button onClick={()=>setScore([...score,score.length+1])}>add</button>
       <button onClick={()=>localStorage.setItem('a',JSON.stringify(score))}>save</button>
       <button onClick={()=>localStorage.removeItem('a')}>Reset</button> */}
@@ -67,7 +71,10 @@ const ScoreBoard = (props) => {
            next={nextPlayer} player={players[index]} 
            prev={prevPlayer} score={score.find((s)=>s.name===players[index])} 
            index={index}
+           round={score}
            isLastPlayer={index===players.length-1}
+           addTototalScore={addTototalScore}
+           setScore={setScore}
            />)
       })}     
     </>} 

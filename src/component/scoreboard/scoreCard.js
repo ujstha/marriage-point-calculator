@@ -42,8 +42,14 @@ const ScoreCard = (props) => {
       <span className="row align-items-baseline">
       <div className="col-4">Fine:</div>
       <Radio.Group className="m-3" defaultValue={isFined} onChange={(e)=>{
-        setFine(15)
-        setIsFined(e.target.value)
+        if(e.target.value){
+          setWinner(false)
+          setFine(15)
+          setIsFined(true)
+        } else{
+          setIsFined(false)
+          setFine(0)
+        }
       }}>
         <Radio className="mx-3"value={true}>fine</Radio>
         <Radio className="mx-3"value={false}>not fine</Radio>
@@ -52,7 +58,7 @@ const ScoreCard = (props) => {
       <span className="row align-items-baseline">
       <div className="col-4">Winner:</div>
       <Radio.Group className="m-3" defaultValue={winner} onChange={(e)=>setWinner(e.target.value)}>
-        <Radio className="mx-3"value={true}>winner</Radio>
+        <Radio disabled={(!seen || isFined) && !(props?.round?.some(a=>a.winner))} className="mx-3"value={true}>winner</Radio>
         <Radio className="mx-3"value={false}>not winner</Radio>
       </Radio.Group>
       </span>
@@ -105,15 +111,16 @@ const ScoreCard = (props) => {
           props.next()
         }} className="btn btn-primary col-6">Next</span>}
         {props.isLastPlayer && <span onClick={()=>{
-          props.addToScore({
-            name: props.player,
-            seen: seen,
-            mal: mal,
-            isFined: isFined,
-            fine: fine,
-            winner: winner,
-            gameType: gameType,
-            winType: winType})
+            props.setScore([])
+            props.addTototalScore({
+              name: props.player,
+              seen: seen,
+              mal: mal,
+              isFined: isFined,
+              fine: fine,
+              winner: winner,
+              gameType: gameType,
+              winType: winType})
         }} className="btn btn-danger col-6">Submit</span>}
       </div>      
     </div>

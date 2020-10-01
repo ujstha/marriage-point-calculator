@@ -11,6 +11,7 @@ function Nav() {
       <button onClick={()=>{
         localStorage.setItem('players',[])
         localStorage.setItem('showForm',true)
+        localStorage.setItem('totalScore',[])
         window.location="/"
       }}>Reset</button>
     </div>
