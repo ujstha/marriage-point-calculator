@@ -12,7 +12,6 @@ function App() {
     setShowPlayerSetting(showForm || false)
   },[])
 
-  console.log(showPlayerSetting);
   return (
     <div className="App">
       <Nav/>

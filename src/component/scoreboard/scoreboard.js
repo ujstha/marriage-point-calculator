@@ -1,6 +1,7 @@
 import React,{useEffect, useState} from 'react';
 import ScoreCard from "./scoreCard";
 import { calc } from "../calculation";
+import Table from "../scoreTable/table";
 
 
 const ScoreBoard = (props) => {
@@ -8,6 +9,7 @@ const ScoreBoard = (props) => {
   const [players,setPlayers]=useState([])
   const [score,setScore]=useState([])
   const [totalScore,setTotalScore]=useState([])
+  const [showTable,SetShowTable]=useState(false)
 
   useEffect(()=>{
     let players= localStorage.getItem('players')
@@ -58,12 +60,8 @@ const ScoreBoard = (props) => {
     <>
     {!props.showPlayerSetting &&
     <>
-    <h4 onClick={()=>{console.log(score)}}>log</h4>
-    <h4 onClick={()=>{console.log(totalScore)}}>total</h4>
-      {/* <button onClick={()=>setScore([...score,score.length+1])}>add</button>
-      <button onClick={()=>localStorage.setItem('a',JSON.stringify(score))}>save</button>
-      <button onClick={()=>localStorage.removeItem('a')}>Reset</button> */}
-      {players.map((player,i)=>{
+    <button onClick={()=>{SetShowTable(!showTable)}}>toggle table</button>
+    {!showTable && players.map((player,i)=>{
         return (index===i &&
            <ScoreCard 
            key={i}
@@ -76,7 +74,11 @@ const ScoreBoard = (props) => {
            addTototalScore={addTototalScore}
            setScore={setScore}
            />)
-      })}     
+      })}
+      {showTable && <Table
+      players={players}
+      pointsDetail={totalScore}
+      />}  
     </>} 
     </>
   );

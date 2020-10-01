@@ -11,6 +11,8 @@ const ScoreCard = (props) => {
   const [winner,setWinner]=useState(props?.score?.winner||false)
   const [gameType,setgameType] =useState(props?.score?.gameType||'normal')
   const [winType,setwinType] =useState(props?.score?.winType||'normal')
+
+  let haveWinner= props.round.some((p)=>p.winner)
     
   return (
     <>
@@ -98,7 +100,7 @@ const ScoreCard = (props) => {
             winType: winType})
           props.prev()
         }} className="btn btn-primary col-6">Prev</span>
-        {!props.isLastPlayer && <span onClick={()=>{
+        {!props.isLastPlayer && <span  onClick={()=>{
           props.addToScore({
             name: props.player,
             seen: seen,
@@ -110,7 +112,7 @@ const ScoreCard = (props) => {
             winType: winType})
           props.next()
         }} className="btn btn-primary col-6">Next</span>}
-        {props.isLastPlayer && <span onClick={()=>{
+        {props.isLastPlayer && (haveWinner || winner  ) && <span  onClick={()=>{
             props.setScore([])
             props.addTototalScore({
               name: props.player,
@@ -122,6 +124,8 @@ const ScoreCard = (props) => {
               gameType: gameType,
               winType: winType})
         }} className="btn btn-danger col-6">Submit</span>}
+        {console.log(props.round)}
+        {<h2 className="row">winner not selected yet</h2>}
       </div>      
     </div>
     </>

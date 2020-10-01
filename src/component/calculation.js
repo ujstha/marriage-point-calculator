@@ -9,7 +9,7 @@ export let calc= async (point)=>{
     totalMaal= pl.mal + totalMaal
   });
 
-  let seenPlayerExcWinner= seenPlayer.filter((pl)=>pl.name !== winner.name)
+  let seenPlayerExcWinner= seenPlayer?.filter((pl)=>pl?.name !== winner?.name)
   let updatedSeenPlayerExcWinner;
 
   if(winner.winType==='normal'){
