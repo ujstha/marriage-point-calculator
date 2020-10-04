@@ -12,7 +12,6 @@ function App() {
     let loc= new Promise((resolve, reject)=>{
       let show = localStorage.getItem('showForm')
       if(show){
-        console.log(show);
         return resolve(JSON.parse(show))
        }
        else{
@@ -20,7 +19,6 @@ function App() {
        }
     })
     loc.then(data=>{
-      console.log(data);
       setShowPlayerSetting(data)
     })
     .catch((err)=>{
@@ -33,7 +31,6 @@ function App() {
     
     const  showForm = await JSON.parse(localStorage.getItem('showForm'))
     if(!showForm){
-      console.log('sssss');
       setShowPlayerSetting(true)
     }else{
       setShowPlayerSetting(showForm)
@@ -42,7 +39,6 @@ function App() {
 
   return (
     <div className="App">
-      <h1 onClick={()=>console.log(showPlayerSetting)}>test</h1>
        <SnackbarProvider>     
         <Nav/>
         <Players showPlayerSetting={showPlayerSetting} setShowPlayerSetting={setShowPlayerSetting}/>
