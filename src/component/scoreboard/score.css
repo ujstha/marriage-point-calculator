@@ -1,0 +1,51 @@
+.group-content {
+  min-height: 30px;
+  margin: 5px 0;
+  text-align: center;
+  font-size: 14px;
+}
+.score-container{
+  height: 90vh;
+}
+
+.game-type{
+  min-height: 225px;
+  font-weight: bold;
+}
+
+.point-operation{
+  margin-top: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  color: white;
+}
+
+.operator{
+width: 20%;
+background-color: #48648c;
+font-size: 20px;
+font-weight: bold;
+}
+
+.mal{
+font-size: 40px;
+font-weight: bolder;
+color: red;
+}
+
+.next-button {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.notification{
+  display: flex;
+  justify-content: center;
+  min-height: 25px;
+}
+
+.player{
+  font-size: 30px;
+}

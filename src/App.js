@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from 'react';
+import SnackbarProvider from 'react-simple-snackbar'
 import Players from './component/playerSet/playerSetting'
 import Score from './component/scoreboard/scoreboard'
 import Nav from "./component/Nav/nav";
@@ -14,9 +15,11 @@ function App() {
 
   return (
     <div className="App">
-      <Nav/>
-      <Players showPlayerSetting={showPlayerSetting} setShowPlayerSetting={setShowPlayerSetting}/>
-      <Score showPlayerSetting={showPlayerSetting}/>
+       <SnackbarProvider>     
+        <Nav/>
+        <Players showPlayerSetting={showPlayerSetting} setShowPlayerSetting={setShowPlayerSetting}/>
+        <Score showPlayerSetting={showPlayerSetting}/>
+      </SnackbarProvider>
     </div>
   );
 }

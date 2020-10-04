@@ -14,6 +14,10 @@ const PlayerSetting = (props) => {
     e.target.checked ?setPlayers([...players,e.target.value]):setPlayers(players.filter(a=>a!==e.target.value))
   }
 
+  function onCheck(data) {
+    players.includes(data)?setPlayers(players.filter(a=>a!==data)): setPlayers([...players,data])
+  }
+
   const savePlayers = ()=>{
     props.setShowPlayerSetting(false)
     localStorage.setItem('showForm',false)
@@ -23,27 +27,36 @@ const PlayerSetting = (props) => {
   return (<>
   {props.showPlayerSetting &&
     <>   
-    <div className="d-flex flex-column col-11 mt-3">
-      <div className="d-flex justify-content-start align-items-center">
-        <input className="mx-3" checked={players.includes('ujjwal')} onChange={onChange} type="checkbox"  value="ujjwal"/>{' '} Ujjwal
+    <div className="playcard-container mx-2">
+      <div  style={{backgroundColor: !players.includes('ujjwal')? '#2a436b':'#2f6324'}} className="playerCard" onClick={()=>onCheck('ujjwal')} >
+        Ujjwal
       </div>
-      <div className="d-flex justify-content-start align-items-center">
-        <input className="mx-3" checked={players.includes('dhiraj')} onChange={onChange} type="checkbox" value="dhiraj" />{' '} Dhiraj
+      <div className="playerCard" style={{backgroundColor: !players.includes('dhiraj')? '#2a436b':'#2f6324'}} onClick={()=>onCheck('dhiraj')} >
+        Dhiraj
       </div>
-      <div className="d-flex justify-content-start align-items-center">
-        <input className="mx-3" checked={players.includes('saugat')} onChange={onChange} type="checkbox" value="saugat" />{' '} Saugat
+      <div className="playerCard" style={{backgroundColor: !players.includes('saugat')? '#2a436b':'#2f6324'}} onClick={()=>onCheck('saugat')} >
+        Saugat
       </div>
-      <div className="d-flex justify-content-start align-items-center">
-        <input className="mx-3" checked={players.includes('sachin')} onChange={onChange} type="checkbox" value="sachin" />{' '} Sachin
+      <div className="playerCard" style={{backgroundColor: !players.includes('sachin')? '#2a436b':'#2f6324'}} onClick={()=>onCheck('sachin')} >
+      Sachin
       </div>
-      <div className="d-flex justify-content-start align-items-center">
-        <input className="mx-3" checked={players.includes('naren')} onChange={onChange} type="checkbox" value="naren" />{' '} Naren
-      </div>        
-    </div>    
-    <div className="d-flex mx-2">
-    <Input className="col-8" type="text" value={addPlayer} onChange={e=>setAddPlayer(e.target.value)}  placeholder="Additional player" />
-    <Button className="col-3" onClick={()=>{setPlayers([...players,addPlayer]);setAddPlayer('')}}>+</Button>
+      <div className="playerCard" style={{backgroundColor: !players.includes('naren')? '#2a436b':'#2f6324'}} onClick={()=>onCheck('naren')} >
+        Naren
+      </div>  
     </div>
+    <div className="mx-2">   
+    <Input className="col-12" type="text" value={addPlayer} onKeyPress={(e)=>{
+      if(e.key==='Enter'){
+        setPlayers([...players,addPlayer]);
+        setAddPlayer('');
+      }
+    }}
+    onChange={e=>{
+     if(e.target.value){
+       setAddPlayer(e.target.value)
+     }
+    }}  placeholder="Additional player" /> 
+    </div>  
     {players.length>0 && 
     <div className="players-table">
       <Table >
@@ -66,12 +79,14 @@ const PlayerSetting = (props) => {
     </Table>
     </div>
     }
-    <button className="submit-button" onClick={()=>{
+    <div className="button-container">
+    <button disabled={!players.length} className="btn btn-danger" onClick={()=>{
       props.setShowPlayerSetting(false)
       localStorage.setItem('showForm',true)
       savePlayers()
       window.location="/"
     }}>Start</button>
+    </div>
     </>}
     </>
   );

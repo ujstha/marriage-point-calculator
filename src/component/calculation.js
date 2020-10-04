@@ -36,10 +36,13 @@ export let calc= async (point)=>{
   }
 
   let updatedUnseenPlayer = unseenPlayer.map((player)=>{
-    if(player.isFined ){
+    if(player.isFined && !player.seen ){
     let  eachPlayerpoint = 0-totalMaal-player.fine-10
       return {...player,point: eachPlayerpoint }
-    }else {
+    } else if(player.isFined && player.seen ){
+      let  eachPlayerpoint = 0-totalMaal-player.fine
+        return {...player,point: eachPlayerpoint }
+      }else {
       let  eachPlayerpoint = 0-totalMaal-10
       return {...player,point: eachPlayerpoint }
     }

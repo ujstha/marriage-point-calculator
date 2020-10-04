@@ -11,6 +11,9 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
+    "react-simple-snackbar": "^1.1.10",
+    "react-switch": "^5.0.1",
+    "react-toastify": "^6.0.8",
     "reactstrap": "^8.6.0"
   },
   "scripts": {
