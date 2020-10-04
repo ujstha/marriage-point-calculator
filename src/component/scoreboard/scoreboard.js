@@ -34,7 +34,7 @@ const ScoreBoard = (props) => {
       setIndex(index-1)
     }
   }
-  const addToScore=(data)=>{    
+  const addToScore=(data)=>{
     let a= score?.find((scr)=>scr.name === data.name)
     if(a){
       let updatedData = score.map((entry)=>{
@@ -92,14 +92,14 @@ const ScoreBoard = (props) => {
         return (index===i &&
            <ScoreCard 
            key={i}
-           addToScore={addToScore} 
+           player={player}
            next={nextPlayer} 
-           player={players[index]} 
            prev={prevPlayer}
-           score={score.find((s)=>s.name===players[index])}
-           index={index}
+           score={score[index]}
            round={score}
+           index={index}
            isLastPlayer={index===players.length-1}
+           addToScore={addToScore} 
            addTototalScore={addTototalScore}
            setScore={setScore}
            />)

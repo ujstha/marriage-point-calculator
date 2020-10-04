@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import { useEffect } from 'react';
 import { useSnackbar } from 'react-simple-snackbar'
 import 'react-toastify/dist/ReactToastify.css';
 import './score.css'
@@ -22,14 +23,21 @@ let snackbarOption={
 
 const ScoreCard = (props) => {
   const [mal,setMal]=useState(props?.score?.mal||0)
-  const [seen,setSeen]=useState(props?.score?.seen||true)
+  const [seen,setSeen]=useState()
   const [isFined,setIsFined]=useState(props?.score?.isFined ||false)
   const [fine,setFine]=useState(props?.score?.fine||0)
   const [winner,setWinner]=useState(props?.score?.winner||false)
   const [gameType,setgameType] =useState(props?.score?.gameType||'normal')
   const [winType,setwinType] =useState(props?.score?.winType||'normal')
   const [openSnackbar, closeSnackbar] = useSnackbar(snackbarOption)
- 
+
+  useEffect(()=>{
+    if(props?.score?.seen === undefined){
+      setSeen(true)
+    }else {
+      setSeen(props.score.seen)
+    }
+  },[])
   
 
   let haveWinner= props?.round?.some((p)=>p.winner)
@@ -38,10 +46,12 @@ const ScoreCard = (props) => {
 
   return (
     <div className="score-container">
+      <h1 onClick={()=>console.log(props.round)}>round</h1>
       <div className="notification">
       {(!haveWinner && !winner) && <span className="text-danger mx-1">winner not selected yet. </span>}  
       {isFined &&  <span className="text-danger">Added 15 as fine</span>} </div>   
     <div className="player" onClick={()=>console.log({
+      name: props.player,
       seen: seen,
       mal: mal,
       isFined: isFined,
@@ -107,7 +117,7 @@ const ScoreCard = (props) => {
        
       </div> 
       <div className="next-button">
-        <button disabled={props.index===0} onClick={()=>{
+        <button disabled={props.index === 0} onClick={()=>{
           props.addToScore({
             name: props.player,
             seen: seen,
