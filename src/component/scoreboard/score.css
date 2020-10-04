@@ -4,16 +4,16 @@
   text-align: center;
   font-size: 14px;
 }
-.score-container{
+.score-container {
   height: 90vh;
 }
 
-.game-type{
+.game-type {
   min-height: 225px;
   font-weight: bold;
 }
 
-.point-operation{
+.point-operation {
   margin-top: 20px 0;
   display: flex;
   justify-content: center;
@@ -22,17 +22,17 @@
   color: white;
 }
 
-.operator{
-width: 20%;
-background-color: #48648c;
-font-size: 20px;
-font-weight: bold;
+.operator {
+  width: 20%;
+  background-color: #48648c;
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.mal{
-font-size: 40px;
-font-weight: bolder;
-color: red;
+.mal {
+  font-size: 40px;
+  font-weight: bolder;
+  color: red;
 }
 
 .next-button {
@@ -40,12 +40,12 @@ color: red;
   justify-content: center;
   width: 100%;
 }
-.notification{
+.notification {
   display: flex;
   justify-content: center;
   min-height: 25px;
 }
 
-.player{
+.player {
   font-size: 30px;
 }

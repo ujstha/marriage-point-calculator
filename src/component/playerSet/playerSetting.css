@@ -1,4 +1,4 @@
-.button-container{
+.button-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,11 +7,11 @@
   width: 100%;
 }
 
-.submit-button{
+.submit-button {
   height: 50px;
   width: 50px;
-  
-  background-color:red;
+
+  background-color: red;
   color: white;
   border: 0px;
   border-radius: 50%;
@@ -21,25 +21,24 @@
   flex-wrap: wrap;
 }
 
-.playerCard{
+.playerCard {
   width: 200px;
-  height:200px;
+  height: 200px;
   background-color: cadetblue;
-  margin: 10px ;
+  margin: 10px;
   line-height: 200px;
   color: aliceblue;
   font-size: 30px;
   cursor: pointer;
 }
 
-@media (max-width:767px)  { 
-
-  .players-table{
+@media (max-width: 767px) {
+  .players-table {
     max-height: 200px !important;
     overflow: scroll;
   }
 
-  .playerCard{
+  .playerCard {
     width: 100px;
     height: 100px;
     background-color: cadetblue;
